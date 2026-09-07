@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MyUploadsRouteImport } from './routes/my-uploads'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as SavedRouteImport } from './routes/saved'
 import { Route as SignupRouteImport } from './routes/signup'
@@ -31,6 +32,11 @@ const ExploreRoute = ExploreRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyUploadsRoute = MyUploadsRouteImport.update({
+  id: '/my-uploads',
+  path: '/my-uploads',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
   '/login': typeof LoginRoute
+  '/my-uploads': typeof MyUploadsRoute
   '/profile': typeof ProfileRoute
   '/saved': typeof SavedRoute
   '/signup': typeof SignupRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
   '/login': typeof LoginRoute
+  '/my-uploads': typeof MyUploadsRoute
   '/profile': typeof ProfileRoute
   '/saved': typeof SavedRoute
   '/signup': typeof SignupRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
   '/login': typeof LoginRoute
+  '/my-uploads': typeof MyUploadsRoute
   '/profile': typeof ProfileRoute
   '/saved': typeof SavedRoute
   '/signup': typeof SignupRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/explore'
     | '/login'
+    | '/my-uploads'
     | '/profile'
     | '/saved'
     | '/signup'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/explore'
     | '/login'
+    | '/my-uploads'
     | '/profile'
     | '/saved'
     | '/signup'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/explore'
     | '/login'
+    | '/my-uploads'
     | '/profile'
     | '/saved'
     | '/signup'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExploreRoute: typeof ExploreRoute
   LoginRoute: typeof LoginRoute
+  MyUploadsRoute: typeof MyUploadsRoute
   ProfileRoute: typeof ProfileRoute
   SavedRoute: typeof SavedRoute
   SignupRoute: typeof SignupRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-uploads': {
+      id: '/my-uploads'
+      path: '/my-uploads'
+      fullPath: '/my-uploads'
+      preLoaderRoute: typeof MyUploadsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExploreRoute: ExploreRoute,
   LoginRoute: LoginRoute,
+  MyUploadsRoute: MyUploadsRoute,
   ProfileRoute: ProfileRoute,
   SavedRoute: SavedRoute,
   SignupRoute: SignupRoute,
