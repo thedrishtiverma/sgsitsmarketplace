@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExploreRouteImport } from './routes/explore'
+import { Route as UploadRouteImport } from './routes/upload'
 import { Route as ResourceResourceIdRouteImport } from './routes/resource.$resourceId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const ExploreRoute = ExploreRouteImport.update({
   path: '/explore',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UploadRoute = UploadRouteImport.update({
+  id: '/upload',
+  path: '/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourceResourceIdRoute = ResourceResourceIdRouteImport.update({
   id: '/resource/$resourceId',
   path: '/resource/$resourceId',
@@ -32,30 +38,34 @@ const ResourceResourceIdRoute = ResourceResourceIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
+  '/upload': typeof UploadRoute
   '/resource/$resourceId': typeof ResourceResourceIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
+  '/upload': typeof UploadRoute
   '/resource/$resourceId': typeof ResourceResourceIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
+  '/upload': typeof UploadRoute
   '/resource/$resourceId': typeof ResourceResourceIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explore' | '/resource/$resourceId'
+  fullPaths: '/' | '/explore' | '/upload' | '/resource/$resourceId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explore' | '/resource/$resourceId'
-  id: '__root__' | '/' | '/explore' | '/resource/$resourceId'
+  to: '/' | '/explore' | '/upload' | '/resource/$resourceId'
+  id: '__root__' | '/' | '/explore' | '/upload' | '/resource/$resourceId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExploreRoute: typeof ExploreRoute
+  UploadRoute: typeof UploadRoute
   ResourceResourceIdRoute: typeof ResourceResourceIdRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExploreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/upload': {
+      id: '/upload'
+      path: '/upload'
+      fullPath: '/upload'
+      preLoaderRoute: typeof UploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resource/$resourceId': {
       id: '/resource/$resourceId'
       path: '/resource/$resourceId'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExploreRoute: ExploreRoute,
+  UploadRoute: UploadRoute,
   ResourceResourceIdRoute: ResourceResourceIdRoute,
 }
 export const routeTree = rootRouteImport
