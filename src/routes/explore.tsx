@@ -24,13 +24,15 @@ interface ExploreSearch {
 const PAGE_SIZE = 6;
 
 export const Route = createFileRoute("/explore")({
-  validateSearch: (search: Record<string, unknown>): ExploreSearch => ({
-    q: typeof search.q === "string" ? search.q : undefined,
-    branch: (search.branch as Branch) || undefined,
-    semester: search.semester ? (Number(search.semester) as Semester) : undefined,
-    subject: typeof search.subject === "string" ? search.subject : undefined,
-    type: (search.type as ResourceType) || undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): ExploreSearch => {
+    const out: ExploreSearch = {};
+    if (typeof search["q"] === "string") out.q = search["q"];
+    if (search["branch"]) out.branch = search["branch"] as Branch;
+    if (search["semester"]) out.semester = Number(search["semester"]) as Semester;
+    if (typeof search["subject"] === "string") out.subject = search["subject"];
+    if (search["type"]) out.type = search["type"] as ResourceType;
+    return out;
+  },
   head: () => ({
     meta: [
       { title: "Explore Resources — SGSITS Marketplace" },

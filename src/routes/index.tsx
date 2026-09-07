@@ -39,7 +39,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const featured = RESOURCES[0];
+  const featured = RESOURCES[0]!;
 
   return (
     <PageShell>
