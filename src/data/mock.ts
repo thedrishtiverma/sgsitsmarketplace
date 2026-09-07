@@ -105,7 +105,7 @@ export const RESOURCES: Resource[] = [
     id: "r-1",
     title: "Design & Analysis of Algorithms — Solved PYQs",
     description:
-      "Twelve years of SGSITS CSE end-semester papers, solved step by step with complexity analysis for every question. Includes a topic-wise frequency table so you know what actually repeats.",
+      "Twelve years of end-sem papers, solved step by step. There's a frequency table at the end so you can see what actually repeats.",
     subject: "Design and Analysis of Algorithms",
     branch: "CSE",
     semester: 6,
@@ -123,7 +123,7 @@ export const RESOURCES: Resource[] = [
     id: "r-2",
     title: "Digital & Data Communication Notes",
     description:
-      "Full-semester typed notes covering modulation schemes, multiplexing, error control coding and channel capacity, with the derivations written out in full.",
+      "Whole semester in one file — modulation, multiplexing, error control, channel capacity. Derivations written out, not skipped.",
     subject: "Digital & Data Communication",
     branch: "ECE",
     semester: 4,
@@ -141,7 +141,7 @@ export const RESOURCES: Resource[] = [
     id: "r-3",
     title: "Discrete Structures — Handwritten Notes",
     description:
-      "Neat handwritten notes from class: Boolean algebra, propositional logic, relations, lattices and graph theory with plenty of solved examples.",
+      "Someone's very neat notebook: logic, relations, lattices, graphs. Loads of solved examples.",
     subject: "Discrete Structures",
     branch: "IT",
     semester: 3,
@@ -159,7 +159,7 @@ export const RESOURCES: Resource[] = [
     id: "r-4",
     title: "Software Engineering Lab Manual",
     description:
-      "Lab file with all ten experiments: UML diagrams, SDLC documentation templates, test plans and a sample mini-project write-up.",
+      "All ten experiments, ready to write up. UML diagrams, SDLC templates, test plans, sample mini-project.",
     subject: "Software Engineering",
     branch: "CSE",
     semester: 5,
@@ -177,7 +177,7 @@ export const RESOURCES: Resource[] = [
     id: "r-5",
     title: "Economics for Engineering — PYQ Set",
     description:
-      "Previous year papers with model answers for cost analysis, demand forecasting and market structures. Useful for the short-answer section.",
+      "Old papers with model answers. Best for the short-answer section you always lose marks on.",
     subject: "Economics for Engineering",
     branch: "ME",
     semester: 3,
@@ -195,7 +195,7 @@ export const RESOURCES: Resource[] = [
     id: "r-6",
     title: "Important Questions — DAA",
     description:
-      "Forty questions that cover almost every unit weight in the DAA paper, arranged by unit with hints and expected marks.",
+      "Forty questions that cover most of the paper. Unit-wise, with hints and expected marks.",
     subject: "Design and Analysis of Algorithms",
     branch: "CSE",
     semester: 6,
@@ -213,7 +213,7 @@ export const RESOURCES: Resource[] = [
     id: "r-7",
     title: "Data Structures — Complete Notes",
     description:
-      "Trees, hashing, heaps and dynamic programming explained with C implementations and dry runs for every algorithm.",
+      "Trees, hashing, heaps, DP — with C code and dry runs for every algorithm.",
     subject: "Data Structures",
     branch: "IT",
     semester: 4,
@@ -231,7 +231,7 @@ export const RESOURCES: Resource[] = [
     id: "r-8",
     title: "Operating Systems — Unit 3 & 4 Notes",
     description:
-      "Memory management, paging, virtual memory and file systems, condensed into a revision-friendly format with diagrams.",
+      "Paging, virtual memory and file systems, squeezed into something you can revise the night before.",
     subject: "Operating Systems",
     branch: "CSE",
     semester: 5,
@@ -249,7 +249,7 @@ export const RESOURCES: Resource[] = [
     id: "r-9",
     title: "Theory of Computation — Assignment Solutions",
     description:
-      "Worked solutions for all four assignments: finite automata, regular expressions, pushdown automata and Turing machines.",
+      "All four assignments, worked out. Automata, regex, PDA, Turing machines.",
     subject: "Theory of Computation",
     branch: "CSE",
     semester: 6,
@@ -267,7 +267,7 @@ export const RESOURCES: Resource[] = [
     id: "r-10",
     title: "Network Theory & Machines — Handwritten Notes",
     description:
-      "Complete handwritten set for network theorems, transient analysis and DC machines, copied from the topper's notebook with permission.",
+      "Network theorems, transients and DC machines. Copied from the topper's notebook, with permission.",
     subject: "Network Theory & Machines",
     branch: "EE",
     semester: 4,
@@ -285,7 +285,7 @@ export const RESOURCES: Resource[] = [
     id: "r-11",
     title: "Theory of Machines — Formula Sheet",
     description:
-      "Two-page formula sheet for kinematics of mechanisms, cams, gears and governors. Print it and keep it in your file.",
+      "Two pages, every formula. Print it, keep it in your file, thank yourself later.",
     subject: "Theory of Machines",
     branch: "ME",
     semester: 4,
@@ -303,7 +303,7 @@ export const RESOURCES: Resource[] = [
     id: "r-12",
     title: "Software Engineering — Mid Sem PYQ Bundle",
     description:
-      "Mid-semester papers from the last six years with a short answer key for the repeated questions.",
+      "Six years of mid-sems with a quick answer key for the questions that keep coming back.",
     subject: "Software Engineering",
     branch: "CSE",
     semester: 5,
