@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export function SearchBar({
   value,
   onChange,
-  placeholder = "Search notes, PYQs, subjects…",
+  placeholder = 'try "DAA unit 3" or "CN PYQs"…',
   className,
 }: {
   value: string;
@@ -20,7 +20,7 @@ export function SearchBar({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        aria-label="Search resources"
+        aria-label="What are you looking for?"
         className="field pl-10"
       />
     </div>

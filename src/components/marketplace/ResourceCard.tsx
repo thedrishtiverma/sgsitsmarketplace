@@ -1,19 +1,20 @@
 import { Link } from "@tanstack/react-router";
 import { Download } from "lucide-react";
 import type { Resource, ResourceType } from "@/data/types";
+import { TYPE_LABELS } from "@/data/mock";
 import { Rating } from "./Rating";
 import { BookmarkButton } from "./BookmarkButton";
 import { cn } from "@/lib/utils";
 
 const typeStyles: Record<ResourceType, string> = {
   Notes: "bg-brand/10 text-brand",
-  "Handwritten Notes": "bg-accent2/20 text-cyan-700",
-  PYQ: "bg-rose-500/10 text-rose-600",
-  "Important Questions": "bg-emerald-500/10 text-emerald-600",
-  "Lab Manual": "bg-violet-500/10 text-violet-600",
-  Assignment: "bg-amber-500/10 text-amber-600",
-  "Study Guide": "bg-sky-500/10 text-sky-700",
-  Other: "bg-ink/10 text-ink/70",
+  "Handwritten Notes": "bg-pink/20 text-pink-700",
+  PYQ: "bg-sun/25 text-amber-700",
+  "Important Questions": "bg-mint/20 text-emerald-700",
+  "Lab Manual": "bg-sky-400/15 text-sky-700",
+  Assignment: "bg-orange-400/15 text-orange-700",
+  "Study Guide": "bg-violet-400/15 text-violet-700",
+  Other: "bg-ink/8 text-ink/70",
 };
 
 export function TypePill({
@@ -31,7 +32,7 @@ export function TypePill({
         className,
       )}
     >
-      {type}
+      {TYPE_LABELS[type]}
     </span>
   );
 }
@@ -57,8 +58,8 @@ export function ResourceCard({ resource }: { resource: Resource }) {
         </p>
       </Link>
 
-      <div className="mt-4 flex items-center gap-2 border-t border-white/60 pt-3">
-        <span className="grid size-7 place-items-center rounded-full bg-brand/15 text-[11px] font-bold text-brand">
+      <div className="mt-4 flex items-center gap-2 border-t border-lav pt-3">
+        <span className="grid size-7 place-items-center rounded-full bg-brand/12 text-[11px] font-bold text-brand">
           {resource.uploader.initials}
         </span>
         <span className="truncate text-xs font-medium text-ink/70">
