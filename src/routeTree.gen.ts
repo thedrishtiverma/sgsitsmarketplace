@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SavedRouteImport } from './routes/saved'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as UploadRouteImport } from './routes/upload'
 import { Route as ResourceResourceIdRouteImport } from './routes/resource.$resourceId'
@@ -37,6 +38,11 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SavedRoute = SavedRouteImport.update({
+  id: '/saved',
+  path: '/saved',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/explore': typeof ExploreRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
+  '/saved': typeof SavedRoute
   '/signup': typeof SignupRoute
   '/upload': typeof UploadRoute
   '/resource/$resourceId': typeof ResourceResourceIdRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/explore': typeof ExploreRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
+  '/saved': typeof SavedRoute
   '/signup': typeof SignupRoute
   '/upload': typeof UploadRoute
   '/resource/$resourceId': typeof ResourceResourceIdRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/explore': typeof ExploreRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
+  '/saved': typeof SavedRoute
   '/signup': typeof SignupRoute
   '/upload': typeof UploadRoute
   '/resource/$resourceId': typeof ResourceResourceIdRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/login'
     | '/profile'
+    | '/saved'
     | '/signup'
     | '/upload'
     | '/resource/$resourceId'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/login'
     | '/profile'
+    | '/saved'
     | '/signup'
     | '/upload'
     | '/resource/$resourceId'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/login'
     | '/profile'
+    | '/saved'
     | '/signup'
     | '/upload'
     | '/resource/$resourceId'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   ExploreRoute: typeof ExploreRoute
   LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
+  SavedRoute: typeof SavedRoute
   SignupRoute: typeof SignupRoute
   UploadRoute: typeof UploadRoute
   ResourceResourceIdRoute: typeof ResourceResourceIdRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/saved': {
+      id: '/saved'
+      path: '/saved'
+      fullPath: '/saved'
+      preLoaderRoute: typeof SavedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/signup': {
       id: '/signup'
       path: '/signup'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExploreRoute: ExploreRoute,
   LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
+  SavedRoute: SavedRoute,
   SignupRoute: SignupRoute,
   UploadRoute: UploadRoute,
   ResourceResourceIdRoute: ResourceResourceIdRoute,
