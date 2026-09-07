@@ -57,14 +57,27 @@ export const SUBJECTS: Subject[] = [
   { id: "tom", name: "Theory of Machines", code: "ME 4004", branch: "ME", semester: 4, resourceCount: 21, avgRating: 4.4 },
 ];
 
+// Short, student-friendly labels for the formal resource type values.
+export const TYPE_LABELS: Record<ResourceType, string> = {
+  Notes: "Notes",
+  "Handwritten Notes": "Handwritten",
+  PYQ: "PYQ",
+  "Important Questions": "Important",
+  "Lab Manual": "Lab stuff",
+  Assignment: "Assignment",
+  "Study Guide": "Study guide",
+  Other: "Other",
+};
+
 export const CATEGORIES: { type: ResourceType; blurb: string; count: number }[] = [
-  { type: "Notes", blurb: "Typed and printed lecture notes", count: 214 },
-  { type: "Handwritten Notes", blurb: "Scanned class notebooks", count: 168 },
-  { type: "PYQ", blurb: "Previous year question papers", count: 142 },
-  { type: "Important Questions", blurb: "Exam-focused question banks", count: 88 },
-  { type: "Lab Manual", blurb: "Experiments, code and readings", count: 76 },
-  { type: "Study Guide", blurb: "Revision guides and summaries", count: 54 },
+  { type: "Notes", blurb: "Typed, printed, actually readable", count: 214 },
+  { type: "Handwritten Notes", blurb: "Somebody's neat notebook, scanned", count: 168 },
+  { type: "PYQ", blurb: "Old papers. The real syllabus.", count: 142 },
+  { type: "Important Questions", blurb: "For when the exam is tomorrow", count: 88 },
+  { type: "Lab Manual", blurb: "Experiments, code, readings", count: 76 },
+  { type: "Study Guide", blurb: "Short versions of long chapters", count: 54 },
 ];
+
 
 export const CURRENT_USER: UserProfile = {
   id: "u-1",
