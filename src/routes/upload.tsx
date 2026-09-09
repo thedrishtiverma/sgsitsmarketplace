@@ -26,11 +26,11 @@ function UploadPage() {
     <PageShell>
       <div className="mx-auto max-w-3xl px-4 pb-16 pt-10 sm:px-5">
         <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-          Upload a resource
+          Got something useful? Drop it here.
         </h1>
         <p className="mt-2 text-sm text-ink/60">
-          Only share material you made or are allowed to share. Clear titles and correct
-          subjects help your batchmates find it.
+          Notes, PYQs, lab files, important questions — whatever helps. Only share what
+          you made or are allowed to share, and give it a clear title.
         </p>
         <div className="mt-6">
           <UploadForm />
