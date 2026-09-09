@@ -63,11 +63,11 @@ export function UploadForm() {
       <div className="glass rounded-2xl p-8 text-center">
         <CheckCircle2 className="mx-auto size-8 text-emerald-500" />
         <p className="mt-4 font-display text-xl font-bold text-ink">
-          Resource submitted
+          Nice. It's in the queue.
         </p>
         <p className="mt-2 text-sm text-ink/60">
-          Your upload is queued for review. Once file storage is connected it will
-          appear on Explore for everyone in your branch.
+          We'll check it before putting it live. Once file storage is connected it'll
+          show up for everyone in your branch.
         </p>
         <button
           type="button"
@@ -245,7 +245,7 @@ export function UploadForm() {
         disabled={status === "uploading"}
         className="brand-gradient w-full rounded-xl px-5 py-3 text-sm font-bold text-white shadow-lg shadow-brand/25 disabled:opacity-60"
       >
-        {status === "uploading" ? "Uploading…" : "Submit resource"}
+        {status === "uploading" ? "Uploading…" : "Give back"}
       </button>
     </form>
   );
