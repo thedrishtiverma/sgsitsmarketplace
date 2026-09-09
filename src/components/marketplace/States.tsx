@@ -31,7 +31,7 @@ export function EmptyState({
 }
 
 export function LoadingState({
-  label = "Loading resources…",
+  label = "Digging through the shelves…",
   className,
 }: {
   label?: string;
@@ -63,8 +63,8 @@ export function ResourceCardSkeleton() {
 }
 
 export function ErrorState({
-  title = "Something went wrong",
-  description = "We couldn't load this right now. Please try again.",
+  title = "That didn't work",
+  description = "We couldn't load this right now. Give it another go.",
   onRetry,
 }: {
   title?: string;

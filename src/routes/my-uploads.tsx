@@ -34,17 +34,17 @@ function MyUploadsPage() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-              My uploads
+              Stuff you shared
             </h1>
             <p className="mt-2 text-sm text-ink/60">
-              {uploads.length} resources · {totalDownloads} downloads received
+              {uploads.length} files · {totalDownloads} downloads by your batchmates
             </p>
           </div>
           <Link
             to="/upload"
             className="brand-gradient rounded-xl px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-brand/25"
           >
-            Upload Notes
+            Upload something
           </Link>
         </div>
 

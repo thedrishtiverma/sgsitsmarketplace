@@ -32,10 +32,10 @@ function SavedPage() {
     <PageShell>
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-5">
         <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-          Saved resources
+          Saved for later
         </h1>
         <p className="mt-2 text-sm text-ink/60">
-          {items.length} {items.length === 1 ? "resource" : "resources"} bookmarked.
+          {items.length} {items.length === 1 ? "thing" : "things"} waiting for you.
         </p>
 
         <div className="mt-8">

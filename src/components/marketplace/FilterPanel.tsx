@@ -16,6 +16,13 @@ export const emptyFilters: Filters = {
   type: "all",
 };
 
+const SHORT_TYPE: Partial<Record<ResourceType, string>> = {
+  "Handwritten Notes": "Handwritten",
+  "Important Questions": "Important",
+  "Lab Manual": "Lab stuff",
+  "Study Guide": "Study guide",
+};
+
 function Chip({
   active,
   children,
@@ -137,13 +144,13 @@ export function FilterPanel({
           </select>
         </div>
 
-        <Group label="Resource type">
+        <Group label="Kind of material">
           <Chip active={filters.type === "all"} onClick={() => set("type", "all")}>
             All
           </Chip>
           {RESOURCE_TYPES.map((t) => (
             <Chip key={t} active={filters.type === t} onClick={() => set("type", t)}>
-              {t}
+              {SHORT_TYPE[t] ?? t}
             </Chip>
           ))}
         </Group>

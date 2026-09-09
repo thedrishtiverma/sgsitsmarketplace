@@ -106,11 +106,11 @@ function Explore() {
     <PageShell>
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-5">
         <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-          Explore resources
+          What are you looking for?
         </h1>
         <p className="mt-2 max-w-xl text-sm text-ink/60">
-          Filter by branch, semester, subject and type to find exactly what you need
-          before the exam.
+          Narrow it down by branch, semester, subject or type — and find the thing that
+          actually saves your week.
         </p>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
