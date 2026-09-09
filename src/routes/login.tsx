@@ -27,7 +27,7 @@ function LoginPage() {
           Welcome back
         </h1>
         <p className="mt-2 text-sm text-ink/60">
-          Sign in to download, save and upload resources.
+          Sign in to download, save and share resources with your batch.
         </p>
 
         <form
