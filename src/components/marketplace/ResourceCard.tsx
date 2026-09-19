@@ -1,76 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Download } from "lucide-react";
 import type { Resource, ResourceType } from "@/data/types";
 import { TYPE_LABELS } from "@/data/mock";
 import { Rating } from "./Rating";
 import { BookmarkButton } from "./BookmarkButton";
 import { cn } from "@/lib/utils";
+import { MarketplaceIcon, RESOURCE_ICON } from "@/components/icons/MarketplaceIcons";
 
-const typeStyles: Record<ResourceType, string> = {
-  Notes: "bg-brand/10 text-brand",
-  "Handwritten Notes": "bg-pink/20 text-pink-700",
-  PYQ: "bg-sun/25 text-amber-700",
-  "Important Questions": "bg-mint/20 text-emerald-700",
-  "Lab Manual": "bg-sky-400/15 text-sky-700",
-  Assignment: "bg-orange-400/15 text-orange-700",
-  "Study Guide": "bg-violet-400/15 text-violet-700",
-  Other: "bg-ink/8 text-ink/70",
-};
-
-export function TypePill({
-  type,
-  className,
-}: {
-  type: ResourceType;
-  className?: string;
-}) {
-  return (
-    <span
-      className={cn(
-        "rounded-full px-2.5 py-1 text-[11px] font-semibold",
-        typeStyles[type],
-        className,
-      )}
-    >
-      {TYPE_LABELS[type]}
-    </span>
-  );
-}
-
-export function ResourceCard({ resource }: { resource: Resource }) {
-  return (
-    <article className="glass glass-hover group rounded-2xl p-5">
-      <div className="flex items-center justify-between">
-        <TypePill type={resource.type} />
-        <BookmarkButton resourceId={resource.id} />
-      </div>
-
-      <Link
-        to="/resource/$resourceId"
-        params={{ resourceId: resource.id }}
-        className="mt-3 block"
-      >
-        <h3 className="font-display text-[16px] font-semibold leading-snug text-ink group-hover:text-brand">
-          {resource.title}
-        </h3>
-        <p className="mt-1 text-xs text-ink/55">
-          {resource.subject} · {resource.branch} · Sem {resource.semester}
-        </p>
-      </Link>
-
-      <div className="mt-4 flex items-center gap-2 border-t border-lav pt-3">
-        <span className="grid size-7 place-items-center rounded-full bg-brand/12 text-[11px] font-bold text-brand">
-          {resource.uploader.initials}
-        </span>
-        <span className="truncate text-xs font-medium text-ink/70">
-          {resource.uploader.name}
-        </span>
-        <Rating value={resource.rating} className="ml-auto" />
-        <span className="inline-flex items-center gap-1 text-[11px] text-ink/45">
-          <Download className="size-3" />
-          {resource.downloads}
-        </span>
-      </div>
-    </article>
-  );
-}
+const typeStyles: Record<ResourceType,string>={Notes:"bg-brand-soft text-brand", "Handwritten Notes":"bg-pink/15 text-pink", PYQ:"bg-sun/30 text-brand-deep", "Important Questions":"bg-signal/25 text-brand-deep", "Lab Manual":"bg-accent2/15 text-brand", Assignment:"bg-muted text-ink", "Study Guide":"bg-mint/20 text-brand-deep", Other:"bg-muted text-ink/70"};
+export function TypePill({type,className}:{type:ResourceType;className?:string}){return <span className={cn("inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1 text-[11px] font-bold",typeStyles[type],className)}><MarketplaceIcon name={RESOURCE_ICON[type]} className="size-3.5"/>{TYPE_LABELS[type]}</span>}
+export function ResourceCard({resource}:{resource:Resource}){return <article className="glass glass-hover group relative overflow-hidden rounded-lg p-5"><span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-brand opacity-75"/><div className="flex items-center justify-between"><TypePill type={resource.type}/><BookmarkButton resourceId={resource.id}/></div><Link to="/resource/$resourceId" params={{resourceId:resource.id}} className="mt-4 block"><h3 className="font-display text-[17px] font-bold leading-snug text-ink group-hover:text-brand">{resource.title}</h3><p className="mt-1.5 text-xs text-ink/55">{resource.subject} · {resource.branch} · Sem {resource.semester}</p></Link><div className="mt-5 flex items-center gap-2 border-t border-border pt-3"><span className="grid size-7 place-items-center rounded-md bg-brand-soft text-[10px] font-bold text-brand">{resource.uploader.initials}</span><span className="truncate text-xs font-semibold text-ink/70">{resource.uploader.name}</span><Rating value={resource.rating} className="ml-auto"/><span className="inline-flex items-center gap-1 text-[11px] text-ink/45"><MarketplaceIcon name="download" className="size-3.5"/>{resource.downloads}</span></div></article>}
