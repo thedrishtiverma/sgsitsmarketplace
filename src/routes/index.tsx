@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Download } from "lucide-react";
 import { PageShell, Section } from "@/components/marketplace/PageShell";
 import { ResourceCard } from "@/components/marketplace/ResourceCard";
 import { SubjectCard } from "@/components/marketplace/SubjectCard";
 import { CategoryCard } from "@/components/marketplace/CategoryCard";
 import { Rating } from "@/components/marketplace/Rating";
+import { Highlight, MarginMark, Pattern, Sticker } from "@/components/brand/BrandVisuals";
+import { MarketplaceIcon } from "@/components/icons/MarketplaceIcons";
 import {
   BRANCHES,
   CATEGORIES,
@@ -44,17 +45,14 @@ function Home() {
   return (
     <PageShell>
       {/* HERO */}
-      <section className="mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-12 sm:px-5 md:grid-cols-[1.1fr_0.9fr] md:pt-16">
+      <section className="relative mx-auto grid max-w-6xl items-center gap-8 overflow-hidden px-4 pb-10 pt-12 sm:px-5 md:grid-cols-[1.1fr_0.9fr] md:pt-16">
+        <Pattern variant="marks" className="opacity-[.08]" />
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/60 px-3 py-1 text-xs font-semibold text-brand shadow-sm">
-            <span className="size-1.5 rounded-full bg-accent2" /> Student-only · SGSITS
-            Indore
-          </span>
+          <Sticker tone="blue">Student-built · SGSITS</Sticker>
           <h1 className="mt-5 font-display text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-6xl">
             Your college.
             <br />
-            Your{" "}
-            <span className="brand-gradient bg-clip-text text-transparent">notes</span>.
+            Your <Highlight>notes</Highlight>.
             <br />
             One place.
           </h1>
@@ -65,13 +63,13 @@ function Home() {
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link
               to="/explore"
-              className="brand-gradient rounded-xl px-6 py-3 text-sm font-bold text-white shadow-xl shadow-brand/30"
+              className="brand-gradient rounded-md px-6 py-3 text-sm font-bold text-primary-foreground"
             >
               Explore Notes
             </Link>
             <Link
               to="/upload"
-              className="rounded-xl border border-white/70 bg-white/60 px-6 py-3 text-sm font-semibold text-ink"
+              className="rounded-md border border-border bg-card px-6 py-3 text-sm font-semibold text-ink"
             >
               Upload Notes
             </Link>
@@ -98,7 +96,7 @@ function Home() {
             aria-hidden
             className="absolute -inset-3 rounded-[28px] bg-gradient-to-br from-brand/20 to-accent2/20 blur-xl"
           />
-          <div className="glass relative rounded-[26px] p-5">
+          <div className="glass paper-card relative rounded-lg p-5">
             <div className="flex items-center justify-between">
               <span className="rounded-full bg-brand/10 px-3 py-1 text-[11px] font-semibold text-brand">
                 {featured.type}
@@ -135,7 +133,7 @@ function Home() {
             <Link
               to="/resource/$resourceId"
               params={{ resourceId: featured.id }}
-              className="mt-4 block rounded-xl bg-ink py-3 text-center text-sm font-semibold text-white"
+                className="mt-4 block rounded-md bg-ink py-3 text-center text-sm font-semibold text-background"
             >
               View resource
             </Link>
@@ -202,7 +200,7 @@ function Home() {
                 </span>
               </span>
               <span className="inline-flex items-center gap-1 text-xs font-semibold text-ink/60">
-                <Download className="size-3.5" />
+                <MarketplaceIcon name="download" className="size-3.5" />
                 {r.downloads}
               </span>
             </Link>
@@ -257,7 +255,7 @@ function Home() {
           to="/explore"
           className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand hover:underline"
         >
-          Browse everything <ArrowRight className="size-4" />
+          Browse everything <MarketplaceIcon name="arrow-right" className="size-4" />
         </Link>
       </Section>
     </PageShell>

@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Download, Star } from "lucide-react";
 import { PageShell } from "@/components/marketplace/PageShell";
 import { TypePill } from "@/components/marketplace/ResourceCard";
 import { EmptyState } from "@/components/marketplace/States";
 import { MY_UPLOADS } from "@/data/mock";
+import { Highlight, MarginMark, Sticker } from "@/components/brand/BrandVisuals";
+import { MarketplaceIcon } from "@/components/icons/MarketplaceIcons";
 
 export const Route = createFileRoute("/my-uploads")({
   head: () => ({
@@ -33,8 +34,9 @@ function MyUploadsPage() {
       <div className="mx-auto max-w-5xl px-4 pb-16 pt-10 sm:px-5">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-              Stuff you shared
+            <Sticker tone="blue">Passed forward</Sticker>
+            <h1 className="mt-4 flex items-center gap-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+              <Highlight>Stuff you shared</Highlight><MarginMark variant="arrow" />
             </h1>
             <p className="mt-2 text-sm text-ink/60">
               {uploads.length} files · {totalDownloads} downloads by your batchmates
@@ -75,10 +77,10 @@ function MyUploadsPage() {
                 </div>
                 <div className="flex shrink-0 items-center gap-5 text-sm text-ink/60">
                   <span className="inline-flex items-center gap-1.5">
-                    <Download className="size-4" /> {r.downloads}
+                     <MarketplaceIcon name="download" className="size-4" /> {r.downloads}
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <Star className="size-4 fill-amber-400 text-amber-400" />{" "}
+                     <MarketplaceIcon name="star" className="size-4 fill-current text-accent2" />{" "}
                     {r.rating.toFixed(1)}
                   </span>
                 </div>

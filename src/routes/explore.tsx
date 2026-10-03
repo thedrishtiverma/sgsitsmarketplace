@@ -12,6 +12,7 @@ import {
 import { EmptyState, ResourceCardSkeleton } from "@/components/marketplace/States";
 import { RESOURCES, SORT_OPTIONS, type SortOption } from "@/data/mock";
 import type { Branch, ResourceType, Semester } from "@/data/types";
+import { Highlight, MarginMark, Sticker } from "@/components/brand/BrandVisuals";
 
 interface ExploreSearch {
   q?: string;
@@ -105,8 +106,9 @@ function Explore() {
   return (
     <PageShell>
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-5">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-          What are you looking for?
+        <Sticker tone="blue">Find your save</Sticker>
+        <h1 className="mt-4 flex items-center gap-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+          What are you <Highlight>looking for?</Highlight><MarginMark variant="circle" />
         </h1>
         <p className="mt-2 max-w-xl text-sm text-ink/60">
           Narrow it down by branch, semester, subject or type — and find the thing that
