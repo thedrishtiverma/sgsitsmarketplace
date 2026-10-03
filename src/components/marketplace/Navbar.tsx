@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { CURRENT_USER } from "@/data/mock";
 import markAsset from "@/assets/sgsits-mark.png.asset.json";
@@ -10,6 +10,23 @@ const links = [
   { to: "/saved", label: "Saved", icon: "saved" },
 ] as const satisfies ReadonlyArray<{ to: string; label: string; icon: IconName }>;
 
+function ThemeToggle() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const saved = window.localStorage.getItem("sgsits-theme");
+    const next = saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    setDark(next);
+    document.documentElement.classList.toggle("dark", next);
+  }, []);
+  const toggle = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    window.localStorage.setItem("sgsits-theme", next ? "dark" : "light");
+  };
+  return <button type="button" onClick={toggle} aria-label={dark ? "Switch to day mode" : "Switch to Night shift"} title={dark ? "Day mode" : "Night shift"} className="theme-toggle"><span aria-hidden className="theme-toggle-glyph">{dark ? "☀" : "☾"}</span><span className="hidden text-[11px] font-bold lg:inline">{dark ? "Day mode" : "Night shift"}</span></button>;
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
   return <header className="relative z-30 border-b border-border bg-card/95">
@@ -20,6 +37,7 @@ export function Navbar() {
       </Link>
       <div className="hidden items-center gap-1 md:flex">{links.map(l => <Link key={l.to} to={l.to} className="rounded-md px-3 py-2 text-sm font-semibold text-ink/65 hover:bg-brand-soft hover:text-brand" activeProps={{className:"bg-brand-soft text-brand"}}>{l.label}</Link>)}</div>
       <div className="flex items-center gap-2">
+        <ThemeToggle />
         <Link to="/explore" aria-label="Search resources" className="grid size-9 place-items-center rounded-md border border-border bg-card text-ink/60 hover:text-brand"><MarketplaceIcon name="search" className="size-4"/></Link>
         <Link to="/profile" aria-label="Your profile" className="hidden size-9 place-items-center rounded-md border border-border bg-brand-soft text-[11px] font-bold text-brand sm:grid">{CURRENT_USER.initials}</Link>
         <Link to="/login" className="hidden rounded-md bg-brand-deep px-4 py-2 text-sm font-bold text-primary-foreground sm:block">Log in</Link>

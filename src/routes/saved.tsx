@@ -4,6 +4,7 @@ import { ResourceCard } from "@/components/marketplace/ResourceCard";
 import { EmptyState } from "@/components/marketplace/States";
 import { RESOURCES } from "@/data/mock";
 import { useSaved } from "@/lib/saved-store";
+import { Highlight, MarginMark, Sticker } from "@/components/brand/BrandVisuals";
 
 export const Route = createFileRoute("/saved")({
   head: () => ({
@@ -31,8 +32,9 @@ function SavedPage() {
   return (
     <PageShell>
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-5">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-          Saved for later
+        <Sticker tone="gold">Exam save</Sticker>
+        <h1 className="mt-4 flex items-center gap-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+          <Highlight>Saved for later</Highlight><MarginMark variant="star" />
         </h1>
         <p className="mt-2 text-sm text-ink/60">
           {items.length} {items.length === 1 ? "thing" : "things"} waiting for you.

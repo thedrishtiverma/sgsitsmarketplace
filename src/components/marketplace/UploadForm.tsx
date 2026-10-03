@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, TriangleAlert, UploadCloud, X } from "lucide-react";
 import { BRANCHES, RESOURCE_TYPES, SEMESTERS, SUBJECTS } from "@/data/mock";
+import { UploadSuccessIllustration } from "@/components/illustrations/MarketplaceIllustrations";
+import { Highlight, Sticker } from "@/components/brand/BrandVisuals";
 
 type Status = "idle" | "uploading" | "success" | "error";
 
@@ -60,10 +62,12 @@ export function UploadForm() {
 
   if (status === "success") {
     return (
-      <div className="glass rounded-2xl p-8 text-center">
-        <CheckCircle2 className="mx-auto size-8 text-emerald-500" />
+      <div className="glass relative overflow-hidden rounded-lg p-8 text-center">
+        <Sticker tone="gold">Just dropped</Sticker>
+        <UploadSuccessIllustration className="mx-auto mt-3" />
+        <CheckCircle2 className="mx-auto size-6 text-mint" />
         <p className="mt-4 font-display text-xl font-bold text-ink">
-          Nice. It's in the queue.
+          <Highlight>It's in.</Highlight>
         </p>
         <p className="mt-2 text-sm text-ink/60">
           We'll check it before putting it live. Once file storage is connected it'll
@@ -86,7 +90,7 @@ export function UploadForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="glass space-y-5 rounded-2xl p-6">
+    <form onSubmit={handleSubmit} className="glass paper-card space-y-5 rounded-lg p-6">
       <Field label="Resource title">
         <input
           required

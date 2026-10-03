@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { FileQuestion, Loader2, TriangleAlert } from "lucide-react";
+import { Loader2, TriangleAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { EmptyFolderIllustration } from "@/components/illustrations/MarketplaceIllustrations";
+import { Highlight, Sticker } from "@/components/brand/BrandVisuals";
 
 export function EmptyState({
   title,
@@ -14,9 +16,10 @@ export function EmptyState({
   actionTo?: "/explore" | "/upload";
 }) {
   return (
-    <div className="glass-soft flex flex-col items-center rounded-2xl px-6 py-14 text-center">
-      <FileQuestion className="size-7 text-ink/35" />
-      <p className="mt-4 font-display text-lg font-bold text-ink">{title}</p>
+    <div className="glass-soft relative flex flex-col items-center overflow-hidden rounded-lg px-6 py-12 text-center">
+      <Sticker tone="gold">Nothing here—yet</Sticker>
+      <EmptyFolderIllustration variant={actionTo === "/upload" ? "upload" : actionTo === "/explore" ? "saved" : "search"} className="mt-5" />
+      <p className="mt-2 font-display text-lg font-bold text-ink"><Highlight>{title}</Highlight></p>
       <p className="mt-1.5 max-w-sm text-sm text-ink/55">{description}</p>
       {actionLabel && actionTo && (
         <Link

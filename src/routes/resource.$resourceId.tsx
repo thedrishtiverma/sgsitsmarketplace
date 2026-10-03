@@ -1,10 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Download, Flag, FileText, Calendar } from "lucide-react";
+import { Flag } from "lucide-react";
 import { PageShell } from "@/components/marketplace/PageShell";
 import { ResourceCard, TypePill } from "@/components/marketplace/ResourceCard";
 import { BookmarkButton } from "@/components/marketplace/BookmarkButton";
 import { Rating } from "@/components/marketplace/Rating";
 import { getRelatedResources, getResourceById } from "@/data/mock";
+import { Highlight, MarginMark, Pattern, Sticker } from "@/components/brand/BrandVisuals";
+import { MarketplaceIcon, RESOURCE_ICON } from "@/components/icons/MarketplaceIcons";
 
 export const Route = createFileRoute("/resource/$resourceId")({
   loader: ({ params }) => {
@@ -63,12 +65,12 @@ function ResourceDetails() {
                 <TypePill type={resource.type} />
                 <Rating value={resource.rating} count={resource.ratingCount} size="lg" />
                 <span className="inline-flex items-center gap-1 text-xs text-ink/55">
-                  <Download className="size-3.5" /> {resource.downloads} downloads
+                   <MarketplaceIcon name="download" className="size-3.5" /> {resource.downloads} downloads
                 </span>
               </div>
 
-              <h1 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-ink">
-                {resource.title}
+              <h1 className="mt-4 font-display text-3xl font-bold leading-tight text-ink">
+                <Highlight>{resource.title}</Highlight>
               </h1>
               <p className="mt-3 text-sm leading-relaxed text-ink/65">
                 {resource.description}
@@ -94,13 +96,14 @@ function ResourceDetails() {
             </div>
 
             {/* Preview area */}
-            <div className="glass-soft mt-6 rounded-2xl p-6">
+            <div className="glass-soft relative mt-6 overflow-hidden rounded-lg p-6">
+              <Pattern variant="paper" className="opacity-50" />
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/45">
                 Preview
               </p>
               <div className="mt-3 grid h-64 place-items-center rounded-xl border border-dashed border-ink/15 bg-white/45 text-center">
                 <div>
-                  <FileText className="mx-auto size-7 text-ink/30" />
+                   <MarketplaceIcon name={RESOURCE_ICON[resource.type]} className="mx-auto size-8 text-brand" />
                   <p className="mt-3 text-sm font-semibold text-ink/70">
                     {resource.pages} pages · {resource.fileSize}
                   </p>
@@ -130,7 +133,7 @@ function ResourceDetails() {
               </div>
 
               <p className="mt-4 inline-flex items-center gap-1.5 text-xs text-ink/55">
-                <Calendar className="size-3.5" />
+                 <MarketplaceIcon name="calendar" className="size-3.5" />
                 Uploaded on{" "}
                 {new Date(resource.uploadedOn).toLocaleDateString("en-IN", {
                   day: "numeric",
@@ -143,7 +146,7 @@ function ResourceDetails() {
                 type="button"
                 className="brand-gradient mt-5 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold text-white shadow-lg shadow-brand/25"
               >
-                <Download className="size-4" /> Download
+                 <MarketplaceIcon name="download" className="size-4" /> Download
               </button>
               <div className="mt-3 grid grid-cols-2 gap-3">
                 <BookmarkButton
@@ -164,8 +167,9 @@ function ResourceDetails() {
 
         {related.length > 0 && (
           <section className="mt-12">
-            <h2 className="font-display text-2xl font-bold tracking-tight text-ink">
-              Related resources
+            <div className="flex items-center gap-3"><Sticker tone="gold">Student pick</Sticker><MarginMark variant="arrow" /></div>
+            <h2 className="mt-3 font-display text-2xl font-bold text-ink">
+              <Highlight>Related resources</Highlight>
             </h2>
             <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((r) => (

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/marketplace/PageShell";
 import { BRANCHES, SEMESTERS } from "@/data/mock";
+import { Highlight, MarginMark, Pattern, Sticker } from "@/components/brand/BrandVisuals";
 
 export const Route = createFileRoute("/signup")({
   head: () => ({
@@ -24,9 +25,11 @@ export const Route = createFileRoute("/signup")({
 function SignupPage() {
   return (
     <PageShell>
-      <div className="mx-auto flex max-w-md flex-col px-4 pb-20 pt-12 sm:px-5">
+      <div className="relative mx-auto flex max-w-md flex-col overflow-hidden px-4 pb-20 pt-12 sm:px-5">
+        <Pattern variant="documents" className="opacity-[.08]" />
+        <Sticker tone="gold">Join the batch</Sticker>
         <h1 className="font-display text-3xl font-bold tracking-tight text-ink">
-          Create your account
+          Create your <Highlight>account</Highlight><MarginMark variant="star" className="ml-2 inline-block" />
         </h1>
         <p className="mt-2 text-sm text-ink/60">
           Built for SGSITS students — tell us your branch so we can show the right
@@ -34,7 +37,7 @@ function SignupPage() {
         </p>
 
         <form
-          className="glass mt-6 space-y-4 rounded-2xl p-6"
+          className="glass paper-card relative mt-6 space-y-4 rounded-lg p-6"
           onSubmit={(e) => e.preventDefault()}
         >
           <label className="block">

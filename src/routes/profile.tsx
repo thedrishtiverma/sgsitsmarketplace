@@ -4,6 +4,7 @@ import { ResourceCard } from "@/components/marketplace/ResourceCard";
 import { EmptyState } from "@/components/marketplace/States";
 import { CURRENT_USER, MY_UPLOADS, RESOURCES } from "@/data/mock";
 import { useSaved } from "@/lib/saved-store";
+import { Highlight, MarginMark, Sticker } from "@/components/brand/BrandVisuals";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({
@@ -40,13 +41,14 @@ function ProfilePage() {
   return (
     <PageShell>
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-5">
-        <div className="glass flex flex-col items-start gap-5 rounded-2xl p-6 sm:flex-row sm:items-center">
+        <div className="glass paper-card flex flex-col items-start gap-5 rounded-lg p-6 sm:flex-row sm:items-center">
           <span className="grid size-20 place-items-center rounded-full bg-gradient-to-br from-brand to-accent2 font-display text-2xl font-bold text-white shadow-lg shadow-brand/30">
             {CURRENT_USER.initials}
           </span>
           <div className="flex-1">
-            <h1 className="font-display text-2xl font-bold tracking-tight text-ink">
-              {CURRENT_USER.name}
+            <Sticker tone="blue">Student profile</Sticker>
+            <h1 className="mt-2 flex items-center gap-2 font-display text-2xl font-bold text-ink">
+              <Highlight>{CURRENT_USER.name}</Highlight><MarginMark variant="star" />
             </h1>
             <p className="mt-1 text-sm text-ink/60">
               {CURRENT_USER.branch} · Semester {CURRENT_USER.semester} ·{" "}

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/marketplace/PageShell";
+import { Highlight, MarginMark, Pattern, Sticker } from "@/components/brand/BrandVisuals";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -22,16 +23,18 @@ export const Route = createFileRoute("/login")({
 function LoginPage() {
   return (
     <PageShell>
-      <div className="mx-auto flex max-w-md flex-col px-4 pb-20 pt-12 sm:px-5">
+      <div className="relative mx-auto flex max-w-md flex-col overflow-hidden px-4 pb-20 pt-12 sm:px-5">
+        <Pattern variant="documents" className="opacity-[.08]" />
+        <Sticker tone="blue">Back to the stash</Sticker>
         <h1 className="font-display text-3xl font-bold tracking-tight text-ink">
-          Welcome back
+          Welcome <Highlight>back</Highlight><MarginMark variant="underline" className="ml-2 inline-block" />
         </h1>
         <p className="mt-2 text-sm text-ink/60">
           Sign in to download, save and share resources with your batch.
         </p>
 
         <form
-          className="glass mt-6 space-y-4 rounded-2xl p-6"
+          className="glass paper-card relative mt-6 space-y-4 rounded-lg p-6"
           onSubmit={(e) => e.preventDefault()}
         >
           <label className="block">
