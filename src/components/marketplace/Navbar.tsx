@@ -1,10 +1,53 @@
-import { useState } from "react";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { CURRENT_USER } from "@/data/mock";
+import markAsset from "@/assets/sgsits-mark.png.asset.json";
 import { MarketplaceIcon, type IconName } from "@/components/icons/MarketplaceIcons";
-import { MoodControl } from "@/components/brand/MoodControl";
-import { Button } from "@/components/ui/button";
-const links=[{to:"/",label:"Marketplace",icon:"browse"},{to:"/explore",label:"Explore resources",icon:"search"},{to:"/saved",label:"Saved collection",icon:"saved"},{to:"/my-uploads",label:"My uploads",icon:"notes"},{to:"/profile",label:"My profile",icon:"profile"}] as const;
-export function Navbar(){const[open,setOpen]=useState(false);return <><div className="mobile-brand"><Link to="/" className="workspace-brand"><span className="brand-symbol"><MarketplaceIcon name="resource" className="size-6"/></span><span>SGSITS<span className="brand-subtitle">Marketplace</span></span></Link><Button variant="outline" aria-label={open?"Close menu":"Open menu"} aria-expanded={open} onClick={()=>setOpen(!open)}><MarketplaceIcon name={open?"close":"menu"} className="size-5"/></Button></div><aside className={`workspace-sidebar ${open?"sidebar-open":""}`}><Link to="/" className="workspace-brand"><span className="brand-symbol"><MarketplaceIcon name="resource" className="size-6"/></span><span>SGSITS<span className="brand-subtitle">Marketplace</span></span></Link><p className="sidebar-tagline">The unofficial internet<br/>of SGSITS.</p><nav className="workspace-navigation"><p className="eyebrow">Your corner of campus</p>{links.map(l=><Link key={l.to} to={l.to} onClick={()=>setOpen(false)} className="sidebar-link" activeOptions={{exact:true}} activeProps={{className:"sidebar-link is-active"}}><MarketplaceIcon name={l.icon} className="size-5"/>{l.label}</Link>)}</nav><Link to="/upload" className="sidebar-upload"><MarketplaceIcon name="upload" className="size-5"/>Drop a resource<MarketplaceIcon name="arrow-right" className="ml-auto size-4"/></Link><MoodControl/><Link to="/profile" className="sidebar-user"><span className="user-avatar">{CURRENT_USER.initials}</span><span><strong>{CURRENT_USER.name}</strong><small>{CURRENT_USER.branch} · Semester {CURRENT_USER.semester}</small></span></Link><span className="sidebar-note">Student-built. Never official.</span></aside></>}
-export function WorkspaceHeader(){const[q,setQ]=useState("");const navigate=useNavigate();return <header className="workspace-header"><form className="workspace-search" onSubmit={e=>{e.preventDefault();navigate({to:"/explore",search:{q}})}}><MarketplaceIcon name="search" className="size-5"/><input aria-label="Search all resources" placeholder="Search notes, subjects, or that one PYQ…" value={q} onChange={e=>setQ(e.target.value)}/><Button variant="ghost" type="submit" aria-label="Search"><MarketplaceIcon name="arrow-right" className="size-4"/></Button></form><Link to="/upload" className="header-upload"><MarketplaceIcon name="upload" className="size-4"/><span>Upload notes</span></Link><Link to="/login" className="header-login">Log in <MarketplaceIcon name="arrow-right" className="size-4"/></Link></header>}
-export function MobileTabBar(){return <nav className="mobile-tab-bar">{[{to:"/",label:"Home",icon:"home"},{to:"/explore",label:"Explore",icon:"search"},{to:"/upload",label:"Upload",icon:"upload"},{to:"/saved",label:"Saved",icon:"saved"}].map(t=><Link key={t.to} to={t.to} activeOptions={{exact:true}} activeProps={{className:"is-active"}}><MarketplaceIcon name={t.icon as IconName} className="size-5"/>{t.label}</Link>)}</nav>}
+
+const links = [
+  { to: "/explore", label: "Browse", icon: "browse" },
+  { to: "/upload", label: "Upload", icon: "upload" },
+  { to: "/saved", label: "Saved", icon: "saved" },
+] as const satisfies ReadonlyArray<{ to: string; label: string; icon: IconName }>;
+
+function ThemeToggle() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const saved = window.localStorage.getItem("sgsits-theme");
+    const next = saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    setDark(next);
+    document.documentElement.classList.toggle("dark", next);
+  }, []);
+  const toggle = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    window.localStorage.setItem("sgsits-theme", next ? "dark" : "light");
+  };
+  return <button type="button" onClick={toggle} aria-label={dark ? "Switch to day mode" : "Switch to Night shift"} title={dark ? "Day mode" : "Night shift"} className="theme-toggle"><span aria-hidden className="theme-toggle-glyph">{dark ? "☀" : "☾"}</span><span className="hidden text-[11px] font-bold lg:inline">{dark ? "Day mode" : "Night shift"}</span></button>;
+}
+
+export function Navbar() {
+  const [open, setOpen] = useState(false);
+  return <header className="relative z-30 border-b border-border bg-card/95">
+    <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-5">
+      <Link to="/" className="flex items-center gap-3">
+        <span className="grid size-11 place-items-center rounded-lg bg-brand-deep"><img src={markAsset.url} alt="SGSITS Marketplace mark" className="size-9" width={36} height={36}/></span>
+        <span className="leading-tight"><span className="block font-display text-base font-bold text-brand-deep">SGSITS Marketplace</span><span className="block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">The unofficial internet of SGSITS</span></span>
+      </Link>
+      <div className="hidden items-center gap-1 md:flex">{links.map(l => <Link key={l.to} to={l.to} className="rounded-md px-3 py-2 text-sm font-semibold text-ink/65 hover:bg-brand-soft hover:text-brand" activeProps={{className:"bg-brand-soft text-brand"}}>{l.label}</Link>)}</div>
+      <div className="flex items-center gap-2">
+        <ThemeToggle />
+        <Link to="/explore" aria-label="Search resources" className="grid size-9 place-items-center rounded-md border border-border bg-card text-ink/60 hover:text-brand"><MarketplaceIcon name="search" className="size-4"/></Link>
+        <Link to="/profile" aria-label="Your profile" className="hidden size-9 place-items-center rounded-md border border-border bg-brand-soft text-[11px] font-bold text-brand sm:grid">{CURRENT_USER.initials}</Link>
+        <Link to="/login" className="hidden rounded-md bg-brand-deep px-4 py-2 text-sm font-bold text-primary-foreground sm:block">Log in</Link>
+        <button type="button" aria-label={open?"Close menu":"Open menu"} aria-expanded={open} onClick={()=>setOpen(v=>!v)} className="grid size-9 place-items-center rounded-md border border-border bg-card text-ink md:hidden"><MarketplaceIcon name={open?"close":"menu"} className="size-4"/></button>
+      </div>
+    </nav>
+    {open && <div className="border-t border-border bg-card p-3 md:hidden">{links.map(l=><Link key={l.to} to={l.to} onClick={()=>setOpen(false)} className="flex items-center gap-3 rounded-md px-3 py-3 text-sm font-semibold text-ink/70 hover:bg-brand-soft"><MarketplaceIcon name={l.icon} className="size-4"/>{l.label}</Link>)}<Link to="/profile" onClick={()=>setOpen(false)} className="flex items-center gap-3 rounded-md px-3 py-3 text-sm font-semibold text-ink/70"><MarketplaceIcon name="profile" className="size-4"/>My stuff</Link></div>}
+  </header>;
+}
+
+export function MobileTabBar(){return <nav className="fixed inset-x-3 bottom-3 z-30 flex items-center justify-around rounded-lg border border-border bg-card px-2 py-2 shadow-lg md:hidden">{[
+  {to:"/",label:"Home",icon:"home"},{to:"/explore",label:"Browse",icon:"browse"},{to:"/upload",label:"Upload",icon:"upload"},{to:"/saved",label:"Saved",icon:"saved"},{to:"/profile",label:"My stuff",icon:"profile"}
+].map(t=><Link key={t.to} to={t.to} className="flex flex-1 flex-col items-center gap-1 rounded-md py-1.5 text-[10px] font-semibold text-ink/50" activeProps={{className:"bg-brand-soft text-brand"}} activeOptions={{exact:t.to==="/"}}><MarketplaceIcon name={t.icon as IconName} className="size-4"/>{t.label}</Link>)}</nav>}

@@ -20,7 +20,7 @@ export function Sticker({ children, tone = "gold", className }: { children: Reac
   return <span className={cn("sticker", `sticker-${tone}`, className)}>{children}</span>;
 }
 
-export function Pattern({ variant = "grid", className }: { variant?: "grid" | "marks" | "documents" | "paper"; className?: string }) {
+export function Pattern({ variant = "grid", className }: { variant?: "grid" | "marks" | "documents"; className?: string }) {
   return <span aria-hidden className={cn("brand-pattern", `brand-pattern-${variant}`, className)} />;
 }
 
