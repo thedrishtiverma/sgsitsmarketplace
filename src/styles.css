@@ -6,7 +6,7 @@
 
 @theme inline {
   --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--display-font);
   --color-brand: var(--brand); --color-brand-deep: var(--brand-deep); --color-brand-soft: var(--brand-soft);
   --color-accent2: var(--accent2); --color-pink: var(--pink); --color-mint: var(--mint); --color-sun: var(--sun);
   --color-ink: var(--ink); --color-frost: var(--frost); --color-lav: var(--lav); --color-paper: var(--paper); --color-signal: var(--signal);
@@ -89,3 +89,95 @@
 .upload-success { width: 13rem; color: var(--brand-deep); }.upload-success .tray{fill:var(--brand-soft);stroke:currentColor;stroke-width:2}.upload-success .tray-line{fill:none;stroke:currentColor;stroke-width:2}.success-paper{animation:paper-drop .7s cubic-bezier(.2,.8,.2,1) both;transform-origin:center}.bookmark-pop{animation:bookmark-pop .28s ease both}
 @keyframes paper-drop{from{transform:translateY(-24px) rotate(-5deg);opacity:0}to{transform:translateY(12px) rotate(0);opacity:1}}@keyframes bookmark-pop{50%{transform:scale(1.22) rotate(-5deg)}}
 @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}.glass-hover:hover{transform:none}.success-paper,.bookmark-pop{animation:none}}
+
+
+/* ================= MOOD SYSTEM ================= */
+:root {
+  --display-font: "Instrument Serif", Georgia, serif; --display-weight: 400; --display-track: -0.01em;
+  --card-radius: 6px; --btn-radius: 6px; --card-border-w: 1px; --card-border: var(--border);
+  --card-shadow: none; --card-shadow-hover: 0 1px 0 var(--border); --card-hover-transform: translateY(-1px);
+  --btn-shadow: none; --cta-bg: var(--brand-deep); --cta-fg: var(--paper);
+  --icon-stroke: 1.5; --mood-accent: var(--accent2); --mood-accent-2: var(--brand);
+  --canvas-pattern: linear-gradient(color-mix(in oklab, var(--brand) 3%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--brand) 3%, transparent) 1px, transparent 1px);
+  --canvas-size: 40px 40px; --tilt: 0deg;
+}
+html[data-mood="energetic"] {
+  --display-font: "Bricolage Grotesque", "Outfit", sans-serif; --display-weight: 800; --display-track: -0.035em;
+  --card-radius: 10px; --btn-radius: 999px; --card-border-w: 2px; --card-border: var(--ink);
+  --card-shadow: 4px 4px 0 var(--ink); --card-shadow-hover: 7px 7px 0 var(--ink); --card-hover-transform: translate(-3px,-3px);
+  --btn-shadow: 3px 3px 0 var(--ink); --cta-bg: var(--signal); --cta-fg: var(--brand-deep);
+  --icon-stroke: 2.2; --mood-accent: var(--signal); --mood-accent-2: oklch(0.6 0.2 255);
+  --canvas-pattern: radial-gradient(color-mix(in oklab, var(--ink) 14%, transparent) 1.2px, transparent 1.4px); --canvas-size: 22px 22px;
+}
+html[data-mood="energetic"]:not(.dark) { --background: oklch(0.97 0.03 92); --brand: oklch(0.5 0.2 258); }
+html[data-mood="soft"] {
+  --display-font: "Fraunces", Georgia, serif; --display-weight: 600; --display-track: -0.02em;
+  --card-radius: 24px; --btn-radius: 999px; --card-border-w: 1px; --card-border: color-mix(in oklab, var(--brand) 10%, transparent);
+  --card-shadow: 0 10px 30px -14px color-mix(in oklab, var(--brand-deep) 25%, transparent);
+  --card-shadow-hover: 0 18px 40px -16px color-mix(in oklab, var(--brand-deep) 32%, transparent); --card-hover-transform: translateY(-4px);
+  --btn-shadow: 0 8px 20px -10px color-mix(in oklab, var(--brand) 50%, transparent); --cta-bg: var(--brand); --cta-fg: var(--paper);
+  --icon-stroke: 1.7; --mood-accent: var(--pink); --mood-accent-2: var(--mint);
+  --canvas-pattern: radial-gradient(60% 50% at 10% 0%, color-mix(in oklab, var(--pink) 14%, transparent), transparent), radial-gradient(50% 50% at 100% 30%, color-mix(in oklab, var(--mint) 14%, transparent), transparent);
+  --canvas-size: 100% 100%;
+}
+html[data-mood="soft"]:not(.dark) { --background: oklch(0.975 0.015 30); --card: oklch(0.995 0.006 40); --brand-soft: oklch(0.95 0.03 300); --signal: oklch(0.88 0.08 20); }
+html[data-mood="wild"] {
+  --display-font: "Syne", "Outfit", sans-serif; --display-weight: 800; --display-track: -0.04em;
+  --card-radius: 2px; --btn-radius: 2px; --card-border-w: 3px; --card-border: var(--ink);
+  --card-shadow: 6px 6px 0 var(--pink); --card-shadow-hover: -6px 8px 0 var(--mint); --card-hover-transform: rotate(-1.2deg) scale(1.02);
+  --btn-shadow: 4px 4px 0 var(--ink); --cta-bg: var(--pink); --cta-fg: var(--paper);
+  --icon-stroke: 2.5; --mood-accent: var(--pink); --mood-accent-2: var(--mint); --tilt: -1.5deg;
+  --canvas-pattern: repeating-linear-gradient(45deg, color-mix(in oklab, var(--ink) 5%, transparent) 0 2px, transparent 2px 18px); --canvas-size: auto;
+}
+html[data-mood="wild"]:not(.dark) { --background: oklch(0.95 0.06 125); --pink: oklch(0.66 0.25 355); --mint: oklch(0.82 0.2 135); --signal: oklch(0.9 0.18 105); }
+
+h1, h2, h3, .font-display { font-weight: var(--display-weight) !important; letter-spacing: var(--display-track); }
+html[data-mood="wild"] h1 { text-transform: uppercase; }
+html[data-mood="wild"] .glass:nth-child(3n+1) { rotate: .6deg; } html[data-mood="wild"] .glass:nth-child(3n+2) { rotate: -.7deg; }
+.highlight-mark::after { background: var(--mood-accent); }
+html[data-mood="soft"] .highlight-mark::after { height: .45em; border-radius: 99px; clip-path: none; opacity: .45; }
+html[data-mood="wild"] .highlight-mark::after { height: 100%; bottom: 0; opacity: 1; z-index: -1; transform: rotate(-2deg); }
+html[data-mood="wild"] .highlight-mark { color: var(--paper); }
+.sticker { transform: rotate(var(--tilt)); }
+html[data-mood="calm"] .sticker, :root:not([data-mood]) .sticker { clip-path: none; border-radius: 99px; transform: none; background: transparent; }
+html[data-mood="soft"] .sticker { clip-path: none; border-radius: 99px; border-color: transparent; }
+html[data-mood="energetic"] .sticker { clip-path: none; border: 2px solid var(--ink); border-radius: 99px; box-shadow: 2px 2px 0 var(--ink); }
+html[data-mood="wild"] .sticker { border-width: 2px; transform: rotate(-4deg); font-size: .7rem; }
+.icon-tile { border-radius: var(--card-radius); }
+html[data-mood="energetic"] .icon-tile, html[data-mood="wild"] .icon-tile { border: 2px solid var(--ink); background: var(--mood-accent); color: var(--ink); }
+html[data-mood="soft"] .icon-tile { border-radius: 40% 60% 55% 45%; border: 0; }
+.field { border-radius: var(--btn-radius) !important; border-width: var(--card-border-w) !important; }
+
+/* Icon palette: every glyph carries a mood-specific backing mark */
+.mk-icon { stroke-width: var(--icon-stroke); overflow: visible; }
+.mk-back { display: none; stroke: none; }
+html[data-mood="energetic"] .mk-back-dot { display: block; fill: var(--signal); }
+html[data-mood="soft"] .mk-back-blob { display: block; fill: color-mix(in oklab, var(--pink) 30%, transparent); }
+html[data-mood="wild"] .mk-back-burst { display: block; fill: var(--mint); }
+html[data-mood="calm"] .mk-back-tick, :root:not([data-mood]) .mk-back-tick { display: block; fill: none; stroke: var(--accent2); stroke-width: 1.4; stroke-linecap: round; }
+
+/* Mood switcher */
+.mood-switch { display: inline-flex; gap: 2px; padding: 3px; border: var(--card-border-w) solid var(--card-border); border-radius: var(--btn-radius); background: var(--card); }
+.mood-switch-btn { display: inline-flex; align-items: center; gap: .35rem; padding: .3rem .55rem; border-radius: var(--btn-radius); font-size: 11px; font-weight: 700; color: color-mix(in oklab, var(--ink) 60%, transparent); }
+.mood-switch-btn[aria-checked="true"] { background: var(--ink); color: var(--background); }
+.mood-dot { width: .7rem; height: .7rem; border-radius: 99px; border: 1.5px solid currentColor; }
+[data-swatch="calm"] .mood-dot { background: var(--paper); border-color: var(--accent2); }
+[data-swatch="energetic"] .mood-dot { background: oklch(0.86 0.17 92); border-radius: 2px; }
+[data-swatch="soft"] .mood-dot { background: oklch(0.85 0.09 15); border-color: transparent; }
+[data-swatch="wild"] .mood-dot { background: oklch(0.66 0.25 355); clip-path: polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); border: 0; width: .85rem; height: .85rem; }
+
+/* Mood stage tiles + marquee */
+.mood-tile { position: relative; overflow: hidden; text-align: left; padding: 1rem; min-height: 8.5rem; border: 2px solid var(--ink); display: flex; flex-direction: column; justify-content: space-between; color: var(--ink); }
+.mood-tile[aria-checked="true"] { outline: 3px solid var(--mood-accent); outline-offset: 3px; }
+.mood-tile-calm { background: oklch(0.975 0.009 87); border-width: 1px; border-color: oklch(0.85 0.02 250); border-radius: 6px; font-family: "Instrument Serif", serif; color: oklch(0.22 0.025 260); }
+.mood-tile-energetic { background: oklch(0.86 0.17 92); border-radius: 12px; box-shadow: 4px 4px 0 oklch(0.2 0.03 260); font-family: "Bricolage Grotesque", sans-serif; color: oklch(0.2 0.03 260); border-color: oklch(0.2 0.03 260); }
+.mood-tile-soft { background: oklch(0.93 0.05 15); border: 0; border-radius: 28px; font-family: "Fraunces", serif; color: oklch(0.3 0.06 300); }
+.mood-tile-wild { background: oklch(0.66 0.25 355); border-radius: 0; rotate: -2deg; font-family: "Syne", sans-serif; text-transform: uppercase; color: oklch(0.98 0 0); border-color: oklch(0.2 0.03 260); box-shadow: 6px 6px 0 oklch(0.82 0.2 135); }
+.marquee { display: flex; overflow: hidden; border-block: var(--card-border-w) solid var(--card-border); background: var(--ink); color: var(--background); }
+.marquee-track { display: flex; flex-shrink: 0; gap: 2.5rem; padding: .7rem 1.25rem; animation: marquee 28s linear infinite; white-space: nowrap; }
+html[data-mood="calm"] .marquee-track { animation-duration: 60s; } html[data-mood="wild"] .marquee-track { animation-duration: 12s; }
+html[data-mood="wild"] .marquee { rotate: -1.5deg; margin-inline: -1rem; background: var(--pink); }
+@keyframes marquee { to { transform: translateX(-100%); } }
+.board { columns: 1; column-gap: 1.25rem; } .board > * { break-inside: avoid; margin-bottom: 1.25rem; }
+@media (min-width: 640px) { .board { columns: 2; } } @media (min-width: 1024px) { .board { columns: 3; } }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } .glass-hover:hover { transform: none !important; } }
