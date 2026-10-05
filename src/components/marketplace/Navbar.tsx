@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { CURRENT_USER } from "@/data/mock";
 import markAsset from "@/assets/sgsits-mark.png.asset.json";
+import { MoodSwitcher } from "@/lib/mood";
 import { MarketplaceIcon, type IconName } from "@/components/icons/MarketplaceIcons";
 
 const links = [
@@ -37,6 +38,7 @@ export function Navbar() {
       </Link>
       <div className="hidden items-center gap-1 md:flex">{links.map(l => <Link key={l.to} to={l.to} className="rounded-md px-3 py-2 text-sm font-semibold text-ink/65 hover:bg-brand-soft hover:text-brand" activeProps={{className:"bg-brand-soft text-brand"}}>{l.label}</Link>)}</div>
       <div className="flex items-center gap-2">
+        <MoodSwitcher className="hidden md:inline-flex" />
         <ThemeToggle />
         <Link to="/explore" aria-label="Search resources" className="grid size-9 place-items-center rounded-md border border-border bg-card text-ink/60 hover:text-brand"><MarketplaceIcon name="search" className="size-4"/></Link>
         <Link to="/profile" aria-label="Your profile" className="hidden size-9 place-items-center rounded-md border border-border bg-brand-soft text-[11px] font-bold text-brand sm:grid">{CURRENT_USER.initials}</Link>
@@ -44,7 +46,7 @@ export function Navbar() {
         <button type="button" aria-label={open?"Close menu":"Open menu"} aria-expanded={open} onClick={()=>setOpen(v=>!v)} className="grid size-9 place-items-center rounded-md border border-border bg-card text-ink md:hidden"><MarketplaceIcon name={open?"close":"menu"} className="size-4"/></button>
       </div>
     </nav>
-    {open && <div className="border-t border-border bg-card p-3 md:hidden">{links.map(l=><Link key={l.to} to={l.to} onClick={()=>setOpen(false)} className="flex items-center gap-3 rounded-md px-3 py-3 text-sm font-semibold text-ink/70 hover:bg-brand-soft"><MarketplaceIcon name={l.icon} className="size-4"/>{l.label}</Link>)}<Link to="/profile" onClick={()=>setOpen(false)} className="flex items-center gap-3 rounded-md px-3 py-3 text-sm font-semibold text-ink/70"><MarketplaceIcon name="profile" className="size-4"/>My stuff</Link></div>}
+    {open && <div className="border-t border-border bg-card p-3 md:hidden"><MoodSwitcher className="mb-2 w-full justify-between" />{links.map(l=><Link key={l.to} to={l.to} onClick={()=>setOpen(false)} className="flex items-center gap-3 rounded-md px-3 py-3 text-sm font-semibold text-ink/70 hover:bg-brand-soft"><MarketplaceIcon name={l.icon} className="size-4"/>{l.label}</Link>)}<Link to="/profile" onClick={()=>setOpen(false)} className="flex items-center gap-3 rounded-md px-3 py-3 text-sm font-semibold text-ink/70"><MarketplaceIcon name="profile" className="size-4"/>My stuff</Link></div>}
   </header>;
 }
 

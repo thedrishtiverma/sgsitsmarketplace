@@ -14,7 +14,7 @@ export interface MarketplaceIconProps extends SVGProps<SVGSVGElement> {
   label?: string;
 }
 
-const common = { fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+const common = { fill: "none", stroke: "currentColor", strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 
 function Glyph({ name }: { name: IconName }) {
   switch (name) {
@@ -50,7 +50,13 @@ function Glyph({ name }: { name: IconName }) {
 }
 
 export function MarketplaceIcon({ name, label, className, ...props }: MarketplaceIconProps) {
-  return <svg viewBox="0 0 24 24" role={label ? "img" : undefined} aria-hidden={label ? undefined : true} aria-label={label} className={cn("shrink-0", className)} {...props}><Glyph name={name} /></svg>;
+  return <svg viewBox="0 0 24 24" role={label ? "img" : undefined} aria-hidden={label ? undefined : true} aria-label={label} className={cn("mk-icon shrink-0", className)} {...props}>
+    <circle className="mk-back mk-back-dot" cx="18.5" cy="5.5" r="3.6"/>
+    <path className="mk-back mk-back-blob" d="M4 9c1-5 7-7 11-5s6 6 5 10-6 7-10 6-7-6-6-11z"/>
+    <path className="mk-back mk-back-burst" d="m12 1.5 2.4 4 4.6-1-1 4.6 4 2.4-4 2.4 1 4.6-4.6-1-2.4 4-2.4-4-4.6 1 1-4.6-4-2.4 4-2.4-1-4.6 4.6 1z" opacity=".55"/>
+    <path className="mk-back mk-back-tick" d="M17.5 21.5c1.5-.4 3-.4 4.5 0"/>
+    <Glyph name={name} />
+  </svg>;
 }
 
 export const RESOURCE_ICON: Record<ResourceType, IconName> = {
